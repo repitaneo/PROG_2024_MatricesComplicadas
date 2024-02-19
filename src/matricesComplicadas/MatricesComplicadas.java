@@ -26,6 +26,9 @@ public class MatricesComplicadas {
 		for(int i=0;i<orden;i++) {
 			for(int j=0;j<orden;j++) {
 				
+				if(datos[i][j]<10) {
+					System.out.print("0");
+				}
 				System.out.print(datos[i][j]+" ");
 			}
 			System.out.println();
@@ -85,6 +88,72 @@ public class MatricesComplicadas {
 		}
 	}
 	
+	
+	
+	public void rellenarZigZag() {
+		
+		int numero = 1;
+		for(int j=0;j<orden;j++) {
+			
+			int fila = 0;
+			int columna = j;
+			while(columna>=0) {
+				datos[fila++][columna--] = numero++;
+			}
+		}
+		
+		for(int i=1;i<orden;i++) {
+			
+			int fila = i;
+			int columna = orden-1;
+			while(fila<orden) {
+				datos[fila++][columna--] = numero++;
+			}
+		}
+	}
+	
+	
+	public void rellenarCaracol() {
+		
+		int fila = orden/2;
+		int columna = orden/2;
+		int numero = 1;
+		
+		datos[fila][columna] = numero++;
+		
+		int vuelta = 1;
+		while((numero-1)!=orden*orden) {
+			
+			fila--;
+			columna--;
+			
+			for(int j=0;j<vuelta*2;j++) {
+				
+				columna++;
+				datos[fila][columna] = numero++;
+			}
+			
+			for(int i=0;i<vuelta*2;i++) {
+				
+				fila++;
+				datos[fila][columna] = numero++;
+			}
+			
+			for(int j=0;j<vuelta*2;j++) {
+				
+				columna--;
+				datos[fila][columna] = numero++;
+			}
+			
+			for(int i=0;i<vuelta*2;i++) {
+				
+				fila--;
+				datos[fila][columna] = numero++;
+			}
+			
+			vuelta++;
+		}
+	}
 	
 	
 }
